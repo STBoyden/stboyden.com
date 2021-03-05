@@ -4,21 +4,20 @@
     import routes from "./routes";
 </script>
 
+<Navbar />
 <main>
-    <Navbar />
     <Router {routes} />
 </main>
 
 <style>
     main {
         text-align: center;
-        /* padding: 1em; */
-        max-width: 240px;
-        margin: 0 auto;
+        margin: 15vh auto 0;
     }
 
-    @media (min-width: 640px) {
+    @media (max-width: 640px) {
         main {
+            margin: 5vh 0 0;
             max-width: none;
         }
     }

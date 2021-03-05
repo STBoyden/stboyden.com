@@ -8,7 +8,7 @@
     let keys = [...Object.keys(details)];
 </script>
 
-<div in:fade={{ delay: 100 }}>
+<div id="contact" in:fade={{ delay: 100 }}>
     <h3>You can contact me through these methods</h3>
     {#each keys as k}
         <h2
@@ -20,3 +20,11 @@
         </h2>
     {/each}
 </div>
+
+<style>
+    @media (max-width: 640px) {
+        #contact {
+            padding: 10px;
+        }
+    }
+</style>

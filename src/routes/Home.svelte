@@ -1,6 +1,5 @@
 <script>
     import { fade, fly } from "svelte/transition";
-    import App from "../App.svelte";
 </script>
 
 <div id="home" in:fade={{ delay: 100 }}>
@@ -31,7 +30,7 @@
     <div class="body" in:fade={{ delay: 3000 }} out:fade={{ duration: 0 }}>
         <p>
             You can check out the <a href="#/projects">projects page</a> for some
-            of the recently updated Git repostories of mine.
+            of the Git projects I am most proud of.
         </p>
         <p>Additionally, you can view my work on these profiles:</p>
         <ul>
@@ -53,9 +52,6 @@
 </div>
 
 <style>
-    #home {
-        margin-top: 15vh;
-    }
     .body {
         display: block;
         text-align: justify;
@@ -66,7 +62,7 @@
 
     @media (max-width: 640px) {
         #home {
-            margin-top: 0;
+            padding: 10px;
         }
         .body {
             max-width: unset;

@@ -10,10 +10,13 @@
 
 <style>
     #navbar {
+        position: fixed;
+        top: 0;
         display: inline-block;
         width: 100vw;
         padding: 0;
         margin: 0;
+        text-align: center;
         background-color: #333;
     }
 
@@ -31,11 +34,5 @@
 
     .navbutton a {
         color: white;
-    }
-
-    @media (max-width: 640px) {
-        #navbar {
-            display: none;
-        }
     }
 </style>
