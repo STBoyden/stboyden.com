@@ -1,18 +1,75 @@
-<h1>Hello world!</h1>
-<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-<p>
-    This template is pre-configured with svlete-spa-router for routing.<br/>
-    Visit the <a href="https://github.com/ItalyPaleAle/svelte-spa-router">documentation for the router</a> to learn more.
-</p>
-<p>
-    <a href="#/lorem/2">Lorem ipsum</a>
-</p>
+<script>
+    import { fade, fly } from "svelte/transition";
+    import App from "../App.svelte";
+</script>
+
+<div id="home" in:fade={{ delay: 100 }}>
+    <div in:fade out:fade={{ delay: 100, duration: 0 }}>
+        <h1
+            style="font-family: 'monospace'"
+            in:fly={{ y: 200, duration: 2000 }}
+            out:fade={{ delay: 0, duration: 0 }}
+        >
+            Hi, I'm Samuel Boyden
+        </h1>
+        <h3 in:fly={{ y: 200, duration: 2000 }} out:fade={{ duration: 0 }}>
+            I am a hobbyist software developer from the United Kingdom.
+        </h3>
+    </div>
+    <div class="body" in:fade={{ delay: 2250 }} out:fade={{ duration: 0 }}>
+        <p>
+            Ever since primary school, I've been interested in computers and how
+            they work. I've always been curious with the inner workings of
+            everything from the operating system to the website.
+        </p>
+        <p>
+            My primary programming language is Rust, but I have experience with
+            Node, C#, C++ and Python, as well as some front-end frameworks such
+            as React and Svelte.
+        </p>
+    </div>
+    <div class="body" in:fade={{ delay: 3000 }} out:fade={{ duration: 0 }}>
+        <p>
+            You can check out the <a href="#/projects">projects page</a> for some
+            of the recently updated Git repostories of mine.
+        </p>
+        <p>Additionally, you can view my work on these profiles:</p>
+        <ul>
+            <li>Github: <a href="https://github.com/STBoyden">here</a></li>
+            <li>Gitlab: <a href="https://gitlab.com/STBoyden">here</a></li>
+        </ul>
+    </div>
+    <div class="body" in:fade={{ delay: 4000 }} out:fade={{ duration: 0 }}>
+        You can request my CV by using one of the options <a href="#/contact_me"
+            >here</a
+        >.
+    </div>
+    <br />
+    <div class="body" in:fade={{ delay: 5000 }} out:fade={{ duration: 0 }}>
+        The source code of this website can be found <a href="..">here</a>.
+    </div>
+</div>
 
 <style>
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+    #home {
+        margin-top: 15vh;
+    }
+    .body {
+        display: block;
+        text-align: justify;
+        font-size: large;
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+        #home {
+            margin-top: 0;
+        }
+        .body {
+            max-width: unset;
+            margin: 0 0;
+            text-align: left;
+        }
+    }
 </style>
