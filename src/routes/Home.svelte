@@ -46,7 +46,9 @@
     </div>
     <br />
     <div class="body" in:fade={{ delay: 5000 }} out:fade={{ duration: 0 }}>
-        The source code of this website can be found <a href="..">here</a>.
+        The source code of this website can be found <a
+            href="https://github.com/STBoyden/stboyden.com">here</a
+        >.
     </div>
 </div>
 
