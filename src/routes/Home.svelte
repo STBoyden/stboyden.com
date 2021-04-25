@@ -34,6 +34,7 @@
         </p>
         <p>Additionally, you can view my work on these profiles:</p>
         <ul>
+            <li>Self-hosted Gitea: <a href="https://git.stboyden.com">here</a></li>
             <li>Github: <a href="https://github.com/STBoyden">here</a></li>
             <li>Gitlab: <a href="https://gitlab.com/STBoyden">here</a></li>
         </ul>
@@ -46,7 +47,7 @@
     <br />
     <div class="body" in:fade={{ delay: 5000 }} out:fade={{ duration: 0 }}>
         The source code of this website can be found <a
-            href="https://github.com/STBoyden/stboyden.com">here</a
+            href="https://git.stboyden.com/STBoyden/stboyden.com">here</a
         >.
     </div>
 </div>
