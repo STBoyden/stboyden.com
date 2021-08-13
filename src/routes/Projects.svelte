@@ -57,7 +57,7 @@
     ];
 
     async function get_data() {
-        const url = "http://git.stboyden.com/api/v1";
+        const url = "https://git.stboyden.com/api/v1";
         const repos_endpoint = "repos/search?uid=1";
 
         let projects = [];
