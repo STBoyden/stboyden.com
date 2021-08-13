@@ -17,6 +17,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "svelte-loading-spinners": "^0.1.7",
     "svelte-spa-router": "^3.0.4",
     "svelte-table": "^0.1.18"
   }

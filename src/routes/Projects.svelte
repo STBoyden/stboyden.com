@@ -1,6 +1,7 @@
 <script>
     import { fade } from "svelte/transition";
     import SvelteTable from "svelte-table";
+    import { Stretch } from "svelte-loading-spinners";
 
     let sort_by = "created_at";
     let sort_order = 1;
@@ -103,12 +104,26 @@
     <h1>Projects</h1>
     {#await get_data()}
         <p>Contacting git.stboyden.com...</p>
-    {:then projects} 
-        <div in:fade={{ delay: 100 }} out:fade={{ duration: 0 }}>
-            You can click/tap on the name of the repository to be taken to the
-            relevant repository page.
+        <div style="align-content: center">
+            <Stretch size="60" color="#ddd" unit="px" />
         </div>
-        <div class="container" in:fade={{ delay: 250 }} out:fade={{ duration: 0 }}>
+    {:then projects} 
+        <div class="container" in:fade={{ delay: 100 }} out:fade={{ duration: 0 }}>
+            <p>
+                You can click/tap on the name of the repository to be taken to the
+                relevant repository page.
+            </p>
+            <p><i>
+                Please note: Some of these dates are inaccurate. For example,
+                project-triangle was created on the 14th May 2020, and was last
+                updated 9th September 2020. The reason for these inaccuracies
+                is that these repositories were originally mirrors of the
+                Github repositories, but I have since moved the main repository
+                for each to my Gitea instance, which then pushes any updates I
+                make to GitHub as a sort of "backup".
+            </i></p>
+        </div>
+        <div class="table-container" in:fade={{ delay: 250 }} out:fade={{ duration: 0 }}>
             <SvelteTable 
                 bind:sortBy={sort_by}
                 bind:sortOrder={sort_order}
@@ -128,6 +143,11 @@
     #projects {
         padding: 10px;
         margin-top: 5vh;
+    }
+
+    .container p {
+        margin: 5px auto;
+        max-width: 50%;
     }
 
     :global(.table) {
@@ -152,9 +172,19 @@
             padding: 0 10px;
         }
 
-        .container {
+        .table-container {
             overflow: scroll;
             max-height: 60vh;
+        }
+
+        .container {
+            margin: 0;
+            padding: 0 10px 0 0;
+        }
+
+        .container p {
+            max-width: 100%;
+            text-align: justify;
         }
 
         :global(.table) {
