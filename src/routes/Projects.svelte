@@ -1,50 +1,164 @@
 <script>
-    import ProjectCard from "../components/ProjectCard.svelte";
+    import { fade } from "svelte/transition";
+    import SvelteTable from "svelte-table";
 
-    let projects = [
+    let sort_by = "created_at";
+    let sort_order = 1;
+
+
+    const columns = [
         {
-            project_name: "Ocean",
-            project_link: "https://github.com/STBoyden/ocean",
-            description:
-                "A C/C++ build system/project manager written in Rust.",
-            picture_url:
-                "https://raw.githubusercontent.com/STBoyden/ocean/master/logo.svg",
+            key: "repo_name",
+            title: "Repository",
+            value: v => `<a class="table-link" href="${v.project_link}">${v.name}</a>`,
+            sortable: true,
         },
         {
-            project_name: "stboyden.com",
-            project_link: "https://github.com/STBoyden/stboyden.com",
-            description: "Personal website written in Svelte + JS.",
+            key: "description",
+            title: "Description",
+            value: v => v.description,
         },
         {
-            project_name: "market-api",
-            project_link: "https://github.com/MinesoftCC/market-api",
-            description:
-                "Market API for an Minecraft-ComputerCraft based economy. Intended to be used in conjunction with <a href='https://github.com/MinesoftCC/CCash'>this</a>. Written in Rust.",
+            key: "language",
+            title: "Language",
+            value: v => v.language,
         },
         {
-            project_name: "market-dashboard",
-            project_link: "https://github.com/MinesoftCC/market-dashboard",
-            description:
-                "A front-end for the market API created by me. Designed to work alongside the bank API developed by EntireTwix. Written in Rust.",
+            key: "created_at",
+            title: "Created at",
+            value: v => new Date(v.created_at).toUTCString(),
+            sortable: true,
         },
+        {
+            key: "updated_at",
+            title: "Last updated",
+            value: v => new Date(v.updated_at).toUTCString(),
+            sortable: true,
+        },
+        {
+            key: "open_issues",
+            title: "Open issues",
+            value: v => v.open_issues,
+            sortable: true,
+        },
+        {
+            key: "releases",
+            title: "Releases",
+            value: v => v.releases,
+            sortable: true,
+        },
+        {
+            key: "size",
+            title: "Size (kb)",
+            value: v => v.size,
+            sortable: true,
+        }
     ];
+
+    async function get_data() {
+        const url = "http://git.stboyden.com/api/v1";
+        const repos_endpoint = "repos/search?uid=1";
+
+        let projects = [];
+
+        const response = await window.fetch(`${url}/${repos_endpoint}`, {
+            method: "GET",
+        });
+
+
+        if (response.ok) {
+            let json = await response.json();
+
+            for (let i = 0; i < json.data.length; i++) {
+                let language = "";
+                let language_response = await window.fetch(
+                    `${url}/repos/${json.data[i]["full_name"]}/languages`, 
+                    { method: "GET" }
+                );
+
+                if (language_response.ok) { language = Object.keys(await language_response.json())[0] }
+
+                projects.push({ 
+                    full_name: json.data[i]["full_name"],
+                    name: json.data[i]["name"],
+                    project_link: json.data[i]["html_url"],
+                    description: json.data[i]["description"] || "This repository has no description.",
+                    created_at: json.data[i]["created_at"],
+                    updated_at: json.data[i]["updated_at"],
+                    open_issues: json.data[i]["open_issues_count"],
+                    releases: json.data[i]["release_counter"],
+                    size: json.data[i]["size"],
+                    language
+                });
+            }
+
+        }
+
+        return projects;
+    }
+
 </script>
 
 <div id="projects">
     <h1>Projects</h1>
-    {#each projects as project}
-        <ProjectCard {...project} delay={750 * projects.indexOf(project) + 1} />
-    {/each}
+    {#await get_data()}
+        <p>Contacting git.stboyden.com...</p>
+    {:then projects} 
+        <div in:fade={{ delay: 100 }} out:fade={{ duration: 0 }}>
+            You can click/tap on the name of the repository to be taken to the
+            relevant repository page.
+        </div>
+        <div class="container" in:fade={{ delay: 250 }} out:fade={{ duration: 0 }}>
+            <SvelteTable 
+                bind:sortBy={sort_by}
+                bind:sortOrder={sort_order}
+                columns="{columns}" 
+                rows="{projects}" 
+                classNameTable={['table']}
+                classNameThead={['table-primary']}
+            />
+        </div>
+    {:catch}
+        <p>Could not fetch data from git.stboyden.com.</p>
+    {/await}
+
 </div>
 
 <style>
     #projects {
+        padding: 10px;
         margin-top: 5vh;
     }
 
-    @media (max-width: 640px) {
+    :global(.table) {
+        margin: 0 auto;
+        max-width: 75%;
+    }
+
+    :global(.table *) {
+        box-sizing: border-box;
+    }
+
+    :global(.table-link) {
+        color: #333 !important;
+    }
+
+    :global(.table tbody tr:nth-child(odd)) {
+        background-color: #ddd;
+    }
+   
+    @media (max-width: 850px) {
         #projects {
-            padding: 10px;
+            padding: 0 10px;
+        }
+
+        .container {
+            overflow: scroll;
+            max-height: 60vh;
+        }
+
+        :global(.table) {
+            margin: 0 auto;
         }
     }
 </style>
