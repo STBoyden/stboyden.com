@@ -6,6 +6,9 @@
     <li class="navbutton">
         <a href="#/contact_me">Contact Me</a>
     </li>
+    <li class="navbutton">
+        <a href="https://liberapay.com/STBoyden">Support Me</a>
+    </li>
 </ul>
 
 <style>
