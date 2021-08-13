@@ -30,7 +30,7 @@
     <div class="body" in:fade={{ delay: 3000 }} out:fade={{ duration: 0 }}>
         <p>
             You can check out the <a href="#/projects">projects page</a> for some
-            of the Git projects I am most proud of.
+            of my Git projects.
         </p>
         <p>Additionally, you can view my work on these profiles:</p>
         <ul>
