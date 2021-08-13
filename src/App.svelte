@@ -15,9 +15,9 @@
         margin: 15vh auto 0;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 375px) {
         main {
-            margin: 5vh 0 0;
+            margin: 20vh 0 0;
             max-width: none;
         }
     }
