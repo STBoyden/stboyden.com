@@ -50,6 +50,11 @@
             href="https://git.stboyden.com/STBoyden/stboyden.com">here</a
         >.
     </div>
+    <br />
+    <div class="body" in:fade={{ delay: 6000 }} out:fade={{ duration: 0 }}>
+        If you're feeling generous, feel free to donate to my Liberapay page
+        profile <a href="https://liberapay.com/STBoyden">here</a>.
+    </div>
 </div>
 
 <style>
@@ -61,7 +66,7 @@
         margin: 0 auto;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 850px) {
         #home {
             padding: 10px;
         }
