@@ -3,15 +3,15 @@
     import SvelteTable from "svelte-table";
     import { Stretch } from "svelte-loading-spinners";
 
-    let sort_by = "created_at";
-    let sort_order = 1;
-
+    let sort_by = "updated_at";
+    let sort_order = -1;
 
     const columns = [
         {
             key: "repo_name",
             title: "Repository",
-            value: v => `<a class="table-link" href="${v.project_link}">${v.name}</a>`,
+            value: v => v.name,
+            renderValue: v => `<a class="table-link" href="${v.project_link}">${v.name}</a>`,
             sortable: true,
         },
         {
@@ -27,13 +27,15 @@
         {
             key: "created_at",
             title: "Created at",
-            value: v => new Date(v.created_at).toUTCString(),
+            value: v => new Date(v.created_at),
+            renderValue: v => new Date(v.created_at).toUTCString(),
             sortable: true,
         },
         {
             key: "updated_at",
-            title: "Last updated",
-            value: v => new Date(v.updated_at).toUTCString(),
+            title: "Last commit",
+            value: v => new Date(v.updated_at),
+            renderValue: v => new Date(v.updated_at).toUTCString(),
             sortable: true,
         },
         {
@@ -77,7 +79,21 @@
                     { method: "GET" }
                 );
 
-                if (language_response.ok) { language = Object.keys(await language_response.json())[0] }
+                if (language_response.ok) { language = Object.keys(await language_response.json())[0]; }
+
+                let updated_at = "";
+                let updated_at_reponse = await window.fetch(
+                    `${url}/repos/stboyden/${json.data[i]["name"]}/commits?limit=1`,
+                    { method: "GET" }
+                );
+
+
+                if (updated_at_reponse.ok) { 
+                    let obj = 
+                        (await updated_at_reponse.json())[0];//["commit"]["author"]["date"]
+
+                    updated_at = new Date(obj.commit.author.date); 
+                }
 
                 projects.push({ 
                     full_name: json.data[i]["full_name"],
@@ -85,7 +101,7 @@
                     project_link: json.data[i]["html_url"],
                     description: json.data[i]["description"] || "This repository has no description.",
                     created_at: json.data[i]["created_at"],
-                    updated_at: json.data[i]["updated_at"],
+                    updated_at: updated_at,
                     open_issues: json.data[i]["open_issues_count"],
                     releases: json.data[i]["release_counter"],
                     size: json.data[i]["size"],
