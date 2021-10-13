@@ -3,7 +3,7 @@
 
     let details = {
         Email: "<a href='mailto:sam@stboyden.com'>sam@stboyden.com</a>",
-        Phone: "+44 7581 750711",
+        Phone: "Will provide if asked for (see above)",
     };
     let keys = [...Object.keys(details)];
 </script>
