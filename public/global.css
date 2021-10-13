@@ -12,6 +12,27 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+body.dark {
+    color: #fff !important;
+    background-color: #333 !important;
+}
+
+.dark a {
+    color: rgb(0, 200, 200);
+}
+
+.dark a:visited {
+    color: rgb(0, 160, 160);
+}
+
+.dark .table-link {
+    color: #fff !important;
+}
+
+.dark .table tbody tr:nth-child(2n+1) {
+    background-color: #222 !important;
+}
+
 a {
 	color: rgb(0,100,200);
 	text-decoration: none;
