@@ -130,13 +130,13 @@
                 relevant repository page.
             </p>
             <p><i>
-                Please note: Some of these dates are inaccurate. For example,
-                project-triangle was created on the 14th May 2020, and was last
-                updated 9th September 2020. The reason for these inaccuracies
-                is that these repositories were originally mirrors of the
-                Github repositories, but I have since moved the main repository
-                for each to my Gitea instance, which then pushes any updates I
-                make to GitHub as a sort of "backup".
+                Please note: Some of the "created at" dates are inaccurate. For
+                example, project-triangle was created on the 14th May 2020, and
+                was last updated 9th September 2020. The reason for these
+                inaccuracies is that these repositories were originally mirrors
+                of the Github repositories, but I have since moved the main
+                repository for each to my Gitea instance, which then pushes any
+                updates I make to GitHub as a sort of "backup".
             </i></p>
         </div>
         <div class="table-container" in:fade={{ delay: 250 }} out:fade={{ duration: 0 }}>
