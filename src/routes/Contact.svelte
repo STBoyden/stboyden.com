@@ -2,9 +2,14 @@
     import { fade } from "svelte/transition";
 
     let details = {
-        Email: "<a href='mailto:sam@stboyden.com'>sam@stboyden.com</a>",
-        Phone: "Will provide if asked for (see above)",
+        "Email": "<a href='mailto:sam@stboyden.com'>sam@stboyden.com</a> (preferred)",
+        "Company Email":
+            "<a href='mailto:s.boyden@pwnctrl.com'>s.boyden@pwnctrl.com</a>",
+        "LinkedIn":
+            "<a href='https://https://www.linkedin.com/in/samuel-boyden/'>samuel-boyden</a>",
+        "Twitter": "<a href='https://twitter.com/stboyden'>@stboyden</a>",
     };
+
     let keys = [...Object.keys(details)];
 </script>
 
