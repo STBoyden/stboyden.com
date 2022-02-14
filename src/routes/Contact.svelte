@@ -6,7 +6,7 @@
         "Company Email":
             "<a href='mailto:s.boyden@pwnctrl.com'>s.boyden@pwnctrl.com</a>",
         "LinkedIn":
-            "<a href='https://https://www.linkedin.com/in/samuel-boyden/'>samuel-boyden</a>",
+            "<a href='https://www.linkedin.com/in/samuel-boyden/'>samuel-boyden</a>",
         "Twitter": "<a href='https://twitter.com/stboyden'>@stboyden</a>",
     };
 
